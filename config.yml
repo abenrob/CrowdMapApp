@@ -1,0 +1,70 @@
+# -------------------------------------------------------------------
+# Backlift config.yml file. This file can be used to customize how 
+# your application is packaged when you run backlift push.
+# -------------------------------------------------------------------
+
+# compile: Backlift will select an appropriate compiler for each file 
+# that matches one of the patterns below. The file types that backlift 
+# recognizes are:
+#   *.jst        -> underscore templates (outputs .js files)
+#   *.handlebars -> handlebars templates (outputs .js files)
+#   *.less       -> lessc css compiler (outputs .css files)
+#   *.coffee     -> coffeescript compiler (outputs .js files)
+#
+# Uncomment this block to customize which files will be compiled:
+
+# compile:
+# - public/**/*.jst
+# - public/**/*.handlebars
+# - public/**/bootstrap*.less
+# - public/**/*.coffee
+
+
+# scripts: These javascript files will be packaged and linked in 
+# order. File paths should be specified relative to the project root.
+# They should not be compressed. The * will match any string and **
+# will match any folder.
+
+scripts:
+- libraries/scripts/backlift-reloader.js
+- libraries/scripts/jquery.js
+- libraries/scripts/underscore.js
+- libraries/scripts/backbone.js
+- libraries/scripts/bootstrap-2.3.1/js/bootstrap.js
+- libraries/scripts/leaflet-0.6.0/leaflet.js
+- libraries/scripts/leaflet-0.6.0/leaflet.markercluster-src.js
+- libraries/scripts/Leaflet.Draw/leaflet.draw-src.js
+- app/**/*.js
+
+
+# styles: These stylesheets will be packaged and linked in order, 
+# similar to scripts.
+
+styles:
+- libraries/scripts/bootstrap-2.3.1/css/bootstrap.css
+- libraries/scripts/leaflet-0.6.0/leaflet.css
+- libraries/scripts/leaflet-0.6.0/MarkerCluster.css
+- libraries/scripts/leaflet-0.6.0/MarkerCluster.Default.css
+- libraries/scripts/Leaflet.Draw/leaflet.draw.css
+- app/**/*.css
+
+
+# optimize: The optimize flag controls whether or not backlift 
+# concatenates and minifies .js and .css files. The optimizer is slow
+# and produces obfuscated code that cannot be easily debugged. For 
+# these reasons, optimization should be disabled during development
+
+optimize: no
+
+
+# includes: Files and folders to be included when app is installed.
+# Each key is a folder name, and each value is a github repository
+# or gist. Github repos may specify a tag or branch via a tree url.
+
+include:
+  admin: 
+  - github.com/backlift/backlift-admin
+  libraries: 
+  - github.com/backlift/backbone-bundle/tree/20130406
+  libraries/scripts: 
+  - gist.github.com/backlift/5325013 # backlift-reloader.js

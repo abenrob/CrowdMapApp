@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head>
+  {{$ styles}}
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="#">CrowdApp</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="#">About</a></li>
+          </ul>
+          <button class="btn pull-right" type="button" id="draw-toggle">Create Point</button>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+  <!-- a placeholder for my list of things, with an input for adding new things -->
+  <div id="map">
+  </div>
+
+  {{$ scripts}}
+</body>
+</html>

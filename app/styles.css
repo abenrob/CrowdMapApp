@@ -1,0 +1,54 @@
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+#_blr-feedback-tab {display: none}
+#map { height: 100% }
+/* Bootstrap */
+.navbar {
+    margin-bottom: 0;
+}
+
+/* override the bootstrap input align (for leaflet layer control */
+label input {
+    vertical-align: inherit;
+}
+
+/* Leaflet-Draw */
+#draw-control-box {
+    display: none;
+    box-shadow: 0 1px 7px rgba(0,0,0,0.4);
+    background: #555;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+#draw-control-box.show{
+    display: block;
+}
+
+/* sprite sheet */
+.green-marker {
+	background: url('app/images/map-markers.png') no-repeat -1px -1px;
+	width: 46px;
+	height: 52px;
+}
+.orange-marker {
+	background: url('app/images/map-markers.png') no-repeat -51px -1px;
+	width: 46px;
+	height: 52px;
+}
+.red-marker {
+	background: url('app/images/map-markers.png') no-repeat -101px -1px;
+	width: 46px;
+	height: 52px;
+}
+.blue-marker {
+	background: url('app/images/map-markers.png') no-repeat -101px -1px;
+	width: 46px;
+	height: 52px;
+}
+.grey-marker {
+	background: url('app/images/map-markers.png') no-repeat -201px -1px;
+	width: 46px;
+	height: 52px;
+}
