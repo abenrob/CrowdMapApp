@@ -71,7 +71,12 @@ function initialize() {
 	}
     });
     map.addControl(drawControl);
+    
     layerControl.addTo(map);
+    $("#draw").click(function(){
+    	console.log('click');
+    	$('a.leaflet-draw-draw-marker')[0].click();
+    });
     map.on('draw:created', function (e) {
 		var type = e.layerType,
 		    layer = e.layer,
@@ -105,7 +110,7 @@ function initialize() {
 					  '</div>'+
 					  '<div class="control-group">'+
 					    '<div class="controls">'+
-					      '<button id="point-confirm" type="submit" class="btn btn-success">Add Point</button>'+
+					      '<button id="point-confirm" type="submit" class="btn btn-success">Confirm Point</button>'+
 					    '</div>'+
 					  '</div>'+
 					'</form>')
