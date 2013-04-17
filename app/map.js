@@ -1,10 +1,12 @@
 var map;
+var markers;
+var popup;
+var drawnItems;
 var redMarker = L.Icon.extend({options: {iconUrl: 'app/images/red-marker.png',iconAnchor:[20,49],popupAnchor:[0,-50]}});
 var orangeMarker = L.Icon.extend({options: {iconUrl: 'app/images/orange-marker.png',iconAnchor:[20,49],popupAnchor:[0,-50]}});
 var greenMarker = L.Icon.extend({options: {iconUrl: 'app/images/green-marker.png',iconAnchor:[20,49],popupAnchor:[0,-50]}});
 var blueMarker = L.Icon.extend({options: {iconUrl: 'app/images/blue-marker.png',iconAnchor:[20,49],popupAnchor:[0,-50]}});
 var greyMarker = L.Icon.extend({options: {iconUrl: 'app/images/grey-marker.png',iconAnchor:[20,49],popupAnchor:[0,-50]}});
-
 
 function initialize() {
 	
@@ -50,7 +52,7 @@ function initialize() {
     
     // layercontrol added below draw controls
     // Initialize the FeatureGroup to store editable layers
-    var drawnItems = new L.FeatureGroup();
+    drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);
     
     // Initialize the draw control and pass it the FeatureGroup of editable layers
@@ -71,12 +73,60 @@ function initialize() {
     map.addControl(drawControl);
     layerControl.addTo(map);
     map.on('draw:created', function (e) {
-	var type = e.layerType,
-	    layer = e.layer,
-	    coords = layer.getLatLng();
-	layer.bindPopup('<p>Lat: '+coords.lat+'</p><p>Long: '+coords.lng+'</p>');
-	drawnItems.addLayer(layer);
-    });
+		var type = e.layerType,
+		    layer = e.layer,
+		    coords = layer.getLatLng();
+		//layer.bindPopup('<p>Lat: '+coords.lat+'</p><p>Long: '+coords.lng+'</p>');
+		drawnItems.addLayer(layer);
+		popup = L.popup({offset: new L.Point(0, -40)})
+	    .setLatLng([coords.lat,coords.lng])
+	    .setContent('<form id="point-add-form" class="form-stacked" data-lat='+coords.lat+' data-lng='+coords.lng+'>'+
+					  '<div class="control-group">'+
+					    '<label class="control-label">Location Name</label>'+
+					    '<div class="controls">'+
+					      '<input type="text" id="inName" placeholder="Location name">'+
+					    '</div>'+
+					  '</div>'+
+					  '<div class="control-group">'+
+					      '<label class="control-label">Point Type<label>'+
+					      '<div class="controls">'+
+					          '<select id="inType">'+
+					              '<option>Awesome</option>'+
+					              '<option>Good to go</option>'+
+					              '<option>Needs Improvement</option>'+
+					            '</select>'+
+					        '</div>'+
+					  '</div>'+
+					  '<div class="control-group">'+
+					    '<label class="control-label">Comment</label>'+
+					    '<div class="controls">'+
+					        '<textarea class="xxlarge" id="inComment" rows="3" placeholder="Comment..."></textarea>'+
+					    '</div>'+
+					  '</div>'+
+					  '<div class="control-group">'+
+					    '<div class="controls">'+
+					      '<button id="point-confirm" type="submit" class="btn btn-success">Add Point</button>'+
+					    '</div>'+
+					  '</div>'+
+					'</form>')
+	    .openOn(map);
+	    //clickBind();
+	    $("#point-add-form").submit(function(event) {		 
+		  /* stop form from submitting normally */
+		  event.preventDefault();
+		 
+		  /* get some values from elements on the page: */
+		  var $form = $( this ),
+		  		lat = $form.data('lat');
+		  		lng = $form.data('lng');
+		  		name = $form.find( 'input[id="inName"]' ).val(),
+		      	type = $form.find( 'select[id="inType"]' ).val(),
+		      	comment = $form.find( 'textarea[id="inComment"]' ).val();
+		  console.log(lat,lng,name,type,comment);
+		  addPoint(name,type,comment,lat,lng);
+
+		});
+	});
     var $toggledraw = $('#draw-toggle');
     var $draw = $('#draw-control-box');
     $toggledraw.click(function() {
@@ -99,11 +149,15 @@ function addGeoJSON(){
 		    },
 		    pointToLayer: function (feature, latlng) {return L.marker(latlng, {icon: new blueMarker()})} 
 		});
-		var markers = new L.MarkerClusterGroup();
+		markers = new L.MarkerClusterGroup();
 		markers.addLayer(inData);
 		map.addLayer(markers);
             }
         });
     
 }
+
+function clearGeoJSON(){
+	map.removeLayer(markers);
+};
 

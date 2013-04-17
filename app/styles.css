@@ -7,6 +7,12 @@ body { height: 100%; margin: 0; padding: 0 }
     margin-bottom: 0;
 }
 
+textarea {
+    resize: vertical;
+    max-height: 100px;
+
+}
+
 /* override the bootstrap input align (for leaflet layer control */
 label input {
     vertical-align: inherit;
