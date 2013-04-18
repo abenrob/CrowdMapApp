@@ -49,6 +49,8 @@ function addPoint(inName,inType,inComment,inLat,inLng){
 			addGeoJSON();
 			map.closePopup(popup);
 			map.removeLayer(drawnItems);
+			drawnItems = new L.FeatureGroup();
+    		map.addLayer(drawnItems);
 	    }
 	});
 }

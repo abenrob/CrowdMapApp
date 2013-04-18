@@ -74,7 +74,10 @@ function initialize() {
     
     layerControl.addTo(map);
     $("#draw").click(function(){
-    	console.log('click');
+    	map.closePopup(popup);
+		map.removeLayer(drawnItems);
+		drawnItems = new L.FeatureGroup();
+    	map.addLayer(drawnItems);
     	$('a.leaflet-draw-draw-marker')[0].click();
     });
     map.on('draw:created', function (e) {
@@ -89,7 +92,7 @@ function initialize() {
 					  '<div class="control-group">'+
 					    '<label class="control-label">Location Name</label>'+
 					    '<div class="controls">'+
-					      '<input type="text" id="inName" placeholder="Location name">'+
+					      '<input class="required" type="text" id="inName" placeholder="Location name">'+
 					    '</div>'+
 					  '</div>'+
 					  '<div class="control-group">'+
@@ -115,28 +118,26 @@ function initialize() {
 					  '</div>'+
 					'</form>')
 	    .openOn(map);
-	    //clickBind();
+
+	    $("#point-add-form").validate();
 	    $("#point-add-form").submit(function(event) {		 
 		  /* stop form from submitting normally */
-		  event.preventDefault();
-		 
-		  /* get some values from elements on the page: */
-		  var $form = $( this ),
-		  		lat = $form.data('lat');
-		  		lng = $form.data('lng');
-		  		name = $form.find( 'input[id="inName"]' ).val(),
-		      	type = $form.find( 'select[id="inType"]' ).val(),
-		      	comment = $form.find( 'textarea[id="inComment"]' ).val();
-		  console.log(lat,lng,name,type,comment);
-		  addPoint(name,type,comment,lat,lng);
-
+			  event.preventDefault();
+			 $("#point-add-form").valid();
+				bool = $("#point-add-form").valid();
+				if (bool){
+				    alert('Do some other stuf now.');
+				    var $form = $( this ),
+			  		lat = $form.data('lat');
+			  		lng = $form.data('lng');
+			  		name = $form.find( 'input[id="inName"]' ).val(),
+			      	type = $form.find( 'select[id="inType"]' ).val(),
+			      	comment = $form.find( 'textarea[id="inComment"]' ).val();
+			  		//console.log(lat,lng,name,type,comment);
+			  		addPoint(name,type,comment,lat,lng);
+				}
 		});
 	});
-    var $toggledraw = $('#draw-toggle');
-    var $draw = $('#draw-control-box');
-    $toggledraw.click(function() {
-	$draw.toggleClass('show');
-    });
 }
 
 function addGeoJSON(){
