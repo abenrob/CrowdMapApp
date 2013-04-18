@@ -5,10 +5,22 @@ function main(){
   
   	$map.css('top',$nav.height());
   	$map.height($body.height()-$nav.height());
+  	
+  	$('#infoModal').modal('show');
+  	
   	initialize();
   	addGeoJSON();  
 }
 $(main);
+
+$(window).resize(function() {
+	var $nav = $('.navbar');
+	var $map = $('#map');
+	var $body = $('body');
+	  
+	$map.css('top',$nav.height());
+	$map.height($body.height()-$nav.height());
+});
 
 function clickBind() {
 	var $ptAddForm = $('#point-add-form');

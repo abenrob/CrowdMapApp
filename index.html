@@ -14,7 +14,7 @@
         <a class="brand" href="#">CrowdApp</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><a href="#">About</a></li>
+            <li><a href="#infoModal" role="button" data-toggle="modal">About</a></li>
           </ul>
           <button class="btn btn-success pull-right" type="button" id="draw"-toggle""><i class="icon-map-marker icon-white"></i> Create Point</button>
 <!--           <button class="btn btn-success pull-right" type="button" id="draw-toggle">Create Point</button> -->
@@ -25,6 +25,23 @@
   <!-- a placeholder for my list of things, with an input for adding new things -->
   <div id="map">
   </div>
+  <!-- Modal -->
+	<div id="infoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">Space is AWESOME!</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. Mankind, let us preserve and increase this beauty, and not destroy it!</p>
+		<p>You know, being a test pilot isn't always the healthiest business in the world.</p>
+		<p>The path of a cosmonaut is not an easy, triumphant march to glory. You have to get to know the meaning not just of joy but also of grief, before being allowed in the spacecraft cabin.</p>
+		<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+		<p>To be the first to enter the cosmos, to engage, single-handed, in an unprecedented duel with nature—could one dream of anything more?</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
 
   {{$ scripts}}
 </body>
