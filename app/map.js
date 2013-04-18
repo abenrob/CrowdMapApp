@@ -92,13 +92,14 @@ function initialize() {
 					  '<div class="control-group">'+
 					    '<label class="control-label">Location Name</label>'+
 					    '<div class="controls">'+
-					      '<input class="required" type="text" id="inName" placeholder="Location name"> <span class="help-block"></span> '+
+					      '<input class="required" type="text" id="inName" name="inName" placeholder="Location name"> <span class="help-block"></span> '+
 					    '</div>'+
 					  '</div>'+
 					  '<div class="control-group">'+
 					      '<label class="control-label">Point Type<label>'+
 					      '<div class="controls">'+
-					          '<select id="inType">'+
+					          '<select  class="required" id="inType" name="inType"><span class="help-block"></span> '+
+					          	  '<option value="" disabled selected style="display:none;">Please Choose</option>'+
 					              '<option>Awesome</option>'+
 					              '<option>Good to go</option>'+
 					              '<option>Needs Improvement</option>'+
@@ -120,6 +121,16 @@ function initialize() {
 	    .openOn(map);
 
 	    $("#point-add-form").validate({
+	    	rules: {
+	    		inName: {
+			      required: true,
+			      minlength: 3
+			    },
+			    inType: {
+			      required: true,
+			      minlength: 1
+			    }
+			  },
 	    	highlight: function (element, errorClass, validClass) {
 		        $(element).closest('.control-group').removeClass('success').addClass('error');
 		    },
@@ -139,7 +150,6 @@ function initialize() {
 			 $("#point-add-form").valid();
 				bool = $("#point-add-form").valid();
 				if (bool){
-				    alert('Do some other stuf now.');
 				    var $form = $( this ),
 			  		lat = $form.data('lat');
 			  		lng = $form.data('lng');
