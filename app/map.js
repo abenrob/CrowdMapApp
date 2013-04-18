@@ -12,21 +12,11 @@ function initialize() {
 	
     var center = [46.8,2.8];
 
-    // create the Esri Gray layer
-    var grayMapUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
-    var grayMapLayer = new L.TileLayer(grayMapUrl, {
-        maxZoom: 19,
-        attribution: 'Tiles: &copy; Esri'
-    });
+
     var esriAerialUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
     var esriAerialLayer = new L.TileLayer(esriAerialUrl, {
         maxZoom: 19,
         attribution: 'Tiles: &copy; Esri, DigitalGlobe, GeoEye, i-cubed, USDA, USGS, AEX, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community'
-    });
-    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var osmLayer = new L.TileLayer(osmUrl, {
-        maxZoom: 19,
-        attribution: 'Map data &copy; OpenStreetMap contributors'
     });
     var mqUrl = 'http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg';
     var mqLayer = new L.TileLayer(mqUrl, {
@@ -35,13 +25,11 @@ function initialize() {
     });
 
     var basemaps = {
-        "ESRI Gray": grayMapLayer,
         "ESRI Aerial": esriAerialLayer,
         "MapQuest OSM": mqLayer,
-        "Open Street Map": osmLayer
     };
     mapoptions = {
-        layers: [osmLayer]
+        layers: [mqLayer]
     };
     map = new L.map('map', mapoptions);
 

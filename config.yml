@@ -42,7 +42,7 @@ scripts:
 # similar to scripts.
 
 styles:
-- libraries/scripts/bootstrap-2.3.1/css/bootstrap.css
+- libraries/scripts/bootstrap-2.3.1/css/bootstrap.min.css
 - libraries/scripts/leaflet-0.6.0/leaflet.css
 - libraries/scripts/leaflet-0.6.0/MarkerCluster.css
 - libraries/scripts/leaflet-0.6.0/MarkerCluster.Default.css
