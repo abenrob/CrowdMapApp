@@ -92,7 +92,7 @@ function initialize() {
 					  '<div class="control-group">'+
 					    '<label class="control-label">Location Name</label>'+
 					    '<div class="controls">'+
-					      '<input class="required" type="text" id="inName" placeholder="Location name">'+
+					      '<input class="required" type="text" id="inName" placeholder="Location name"> <span class="help-block"></span> '+
 					    '</div>'+
 					  '</div>'+
 					  '<div class="control-group">'+
@@ -102,13 +102,13 @@ function initialize() {
 					              '<option>Awesome</option>'+
 					              '<option>Good to go</option>'+
 					              '<option>Needs Improvement</option>'+
-					            '</select>'+
+					            '</select> <span class="help-block"></span> '+
 					        '</div>'+
 					  '</div>'+
 					  '<div class="control-group">'+
 					    '<label class="control-label">Comment</label>'+
 					    '<div class="controls">'+
-					        '<textarea class="xxlarge" id="inComment" rows="3" placeholder="Comment..."></textarea>'+
+					        '<textarea class="xxlarge" id="inComment" rows="3" placeholder="Comment..."></textarea> <span class="help-block"></span> '+
 					    '</div>'+
 					  '</div>'+
 					  '<div class="control-group">'+
@@ -119,7 +119,20 @@ function initialize() {
 					'</form>')
 	    .openOn(map);
 
-	    $("#point-add-form").validate();
+	    $("#point-add-form").validate({
+	    	highlight: function (element, errorClass, validClass) {
+		        $(element).closest('.control-group').removeClass('success').addClass('error');
+		    },
+		    unhighlight: function (element, errorClass, validClass) {
+		        $(element).closest('.control-group').removeClass('error').addClass('success');
+		    },
+		    success: function (label) {
+		        $(label).closest('form').find('.valid').removeClass("invalid");
+		    },
+		    errorPlacement: function (error, element) {
+		        element.closest('.control-group').find('.help-block').html(error.text());
+		    }
+	    });
 	    $("#point-add-form").submit(function(event) {		 
 		  /* stop form from submitting normally */
 			  event.preventDefault();
