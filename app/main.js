@@ -32,5 +32,3 @@ function clickBind() {
 		console.log($ptAddForm.data('lng'));
 	});
 };
-
-

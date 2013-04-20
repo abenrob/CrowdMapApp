@@ -18,6 +18,11 @@ label input {
     vertical-align: inherit;
 }
 
+/* override the bootstrap form margins within popups */
+.leaflet-popup-content p {
+	margin: 0;
+}
+
 /* Leaflet-Draw */
 #draw-control-box {
     display: none;

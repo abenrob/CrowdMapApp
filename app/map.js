@@ -42,6 +42,7 @@ function initialize() {
     map.addLayer(drawnItems);
     
     // Initialize the draw control and pass it the FeatureGroup of editable layers
+    // NOTE: draw control is not visible, but it's events are linked to a navbar button.
     var drawControl = new L.Control.Draw({
 	draw: {
 	    rectangle: false,
@@ -156,15 +157,48 @@ function addGeoJSON(){
                   type: "FeatureCollection",   
                   features: result
                 };
-		var inData = L.geoJson(mapGeoJSON, {
-		    onEachFeature: function (feature, layer) {
-				layer.bindPopup('Name: '+feature.properties.name+'<br>Feedback: '+feature.properties.type+'<br>Comment: '+feature.properties.comment);
-		    },
-		    pointToLayer: function (feature, latlng) {return L.marker(latlng, {icon: blueMarker})} 
-		});
-		markers = new L.MarkerClusterGroup();
-		markers.addLayer(inData);
-		map.addLayer(markers);
+                function buildPopup(id,name,type,comment){
+                	var custompopup = document.createElement('div');
+	                var dombtn = document.createElement('button');
+	                dombtn.classList.add("btn");
+	                dombtn.classList.add("btn-small");
+	                dombtn.classList.add("btn-success");
+	                dombtn.setAttribute("data-id",id)
+					dombtn.innerHTML = '<i class="icon-heart icon-white"></i> Like this';
+					dombtn.onclick = function() {
+					    alert('click');
+					};
+					var domcontent = document.createElement('p');
+					domcontent.innerHTML = '<br><div><strong>Name: </strong>'+name+
+											'<br><strong>Feedback: </strong>'+type+
+											'<br><strong>Comment: </strong>'+comment;
+					custompopup.appendChild(dombtn);
+					custompopup.appendChild(domcontent);
+					return custompopup;
+				}
+				var inData = L.geoJson(mapGeoJSON, {
+				    onEachFeature: function (feature, layer) {
+						layer.bindPopup(buildPopup(feature.id,feature.properties.name,feature.properties.type,feature.properties.comment)
+										// '<button id="point-like" class="btn btn-small btn-success" data-id='+feature.id+'>'+
+											// '<i class="icon-heart icon-white"></i> Like this'+
+										// '</button>'+
+										// '<br><div><strong>Name: </strong>'+feature.properties.name+
+										// '<br><strong>Feedback: </strong>'+feature.properties.type+
+										// '<br><strong>Comment: </strong>'+feature.properties.comment+'</div>'
+										);
+				    },
+				    pointToLayer: function (feature, latlng) {return L.marker(latlng, {icon: blueMarker})} 
+				});
+				markers = new L.MarkerClusterGroup();
+				markers.addLayer(inData);
+				map.addLayer(markers);
+				$("#point-like").click(function() {
+				    var $like = $(this),
+				    currentdate = new Date(),
+					id = $like.data('id');
+					console.log(id,currentdate);
+					//likePoint(id,currentdate);
+				});
             }
         });
     
