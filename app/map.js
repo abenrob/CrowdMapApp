@@ -2,11 +2,9 @@ var map;
 var markers;
 var popup;
 var drawnItems;
-var redMarker = L.Icon.extend({options: {iconUrl: 'app/images/red-marker.png',iconAnchor:[20,49],popupAnchor:[0,-50]}});
-var orangeMarker = L.Icon.extend({options: {iconUrl: 'app/images/orange-marker.png',iconAnchor:[20,49],popupAnchor:[0,-50]}});
-var greenMarker = L.Icon.extend({options: {iconUrl: 'app/images/green-marker.png',iconAnchor:[20,49],popupAnchor:[0,-50]}});
-var blueMarker = L.Icon.extend({options: {iconUrl: 'app/images/blue-marker.png',iconAnchor:[20,49],popupAnchor:[0,-50]}});
-var greyMarker = L.Icon.extend({options: {iconUrl: 'app/images/grey-marker.png',iconAnchor:[20,49],popupAnchor:[0,-50]}});
+
+var blueMarker = L.AwesomeMarkers.icon({icon: 'icon-globe', color: 'blue'});
+var redMarker = L.AwesomeMarkers.icon({icon: 'icon-globe', color: 'red'});
 
 function initialize() {
 	
@@ -50,9 +48,7 @@ function initialize() {
 	    polyline: false,
 	    polygon: false,
 	    circle: false,
-	    marker: {
-		icon: new redMarker()
-	    }
+	    marker: {icon: redMarker}
 	},
 	edit: {
 	    featureGroup: drawnItems
@@ -164,7 +160,7 @@ function addGeoJSON(){
 		    onEachFeature: function (feature, layer) {
 				layer.bindPopup('Name: '+feature.properties.name+'<br>Feedback: '+feature.properties.type+'<br>Comment: '+feature.properties.comment);
 		    },
-		    pointToLayer: function (feature, latlng) {return L.marker(latlng, {icon: new blueMarker()})} 
+		    pointToLayer: function (feature, latlng) {return L.marker(latlng, {icon: blueMarker})} 
 		});
 		markers = new L.MarkerClusterGroup();
 		markers.addLayer(inData);

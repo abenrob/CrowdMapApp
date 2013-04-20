@@ -34,6 +34,7 @@ scripts:
 - libraries/scripts/leaflet-0.6.0/leaflet.js
 - libraries/scripts/leaflet-0.6.0/leaflet.markercluster-src.js
 - libraries/scripts/Leaflet.Draw/leaflet.draw-src.js
+- libraries/scripts/marker-awesome/leaflet.awesome-markers.js
 - libraries/scripts/jquery.validate.min.js
 - app/**/*.js
 
@@ -47,6 +48,7 @@ styles:
 - libraries/scripts/leaflet-0.6.0/MarkerCluster.css
 - libraries/scripts/leaflet-0.6.0/MarkerCluster.Default.css
 - libraries/scripts/Leaflet.Draw/leaflet.draw.css
+- libraries/scripts/marker-awesome/leaflet.awesome-markers.css
 - app/**/*.css
 
 
