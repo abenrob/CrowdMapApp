@@ -35,3 +35,18 @@ function addPoint(inName,inType,inComment,inLat,inLng){
 	    }
 	});
 }
+
+function likePoint(inID,inDate){
+	var dataObj = {"properties":
+						{"likes": [{"date": inDate}]}
+				}
+	var json = JSON2.stringify(dataObj);
+	$.ajax({
+	    type: "PUT",
+	    url: "/backlift/data/geoPoints/"+inID, 
+	    data: json,
+	    success: function(result) { 
+	        console.log(result);
+	    } 
+	});
+}

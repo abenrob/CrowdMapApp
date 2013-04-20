@@ -166,7 +166,8 @@ function addGeoJSON(){
 	                dombtn.setAttribute("data-id",id)
 					dombtn.innerHTML = '<i class="icon-heart icon-white"></i> Like this';
 					dombtn.onclick = function() {
-					    alert('click');
+						var currentdate = new Date();
+						likePoint(id,currentdate);
 					};
 					var domcontent = document.createElement('p');
 					domcontent.innerHTML = '<br><div><strong>Name: </strong>'+name+
@@ -178,27 +179,15 @@ function addGeoJSON(){
 				}
 				var inData = L.geoJson(mapGeoJSON, {
 				    onEachFeature: function (feature, layer) {
-						layer.bindPopup(buildPopup(feature.id,feature.properties.name,feature.properties.type,feature.properties.comment)
-										// '<button id="point-like" class="btn btn-small btn-success" data-id='+feature.id+'>'+
-											// '<i class="icon-heart icon-white"></i> Like this'+
-										// '</button>'+
-										// '<br><div><strong>Name: </strong>'+feature.properties.name+
-										// '<br><strong>Feedback: </strong>'+feature.properties.type+
-										// '<br><strong>Comment: </strong>'+feature.properties.comment+'</div>'
-										);
+						layer.bindPopup(buildPopup(
+							feature.id,feature.properties.name,feature.properties.type,feature.properties.comment)
+						);
 				    },
 				    pointToLayer: function (feature, latlng) {return L.marker(latlng, {icon: blueMarker})} 
 				});
 				markers = new L.MarkerClusterGroup();
 				markers.addLayer(inData);
 				map.addLayer(markers);
-				$("#point-like").click(function() {
-				    var $like = $(this),
-				    currentdate = new Date(),
-					id = $like.data('id');
-					console.log(id,currentdate);
-					//likePoint(id,currentdate);
-				});
             }
         });
     
