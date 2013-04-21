@@ -167,7 +167,7 @@ function addGeoJSON(){
 					dombtn.innerHTML = '<i class="icon-heart icon-white"></i> Like this';
 					dombtn.onclick = function() {
 						var currentdate = new Date();
-						likePoint(id,currentdate);
+						appendPoint(id,currentdate);
 					};
 					var domcontent = document.createElement('p');
 					domcontent.innerHTML = '<br><div><strong>Name: </strong>'+name+
