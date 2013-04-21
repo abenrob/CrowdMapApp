@@ -45,6 +45,8 @@ function likePoint(inID,inDate){
 	    type: "PUT",
 	    url: "/backlift/data/geoPoints/"+inID, 
 	    data: json,
+	    contentType: "application/json; charset=utf-8",
+	 	dataType: "json",
 	    success: function(result) { 
 	        console.log(result);
 	    } 
