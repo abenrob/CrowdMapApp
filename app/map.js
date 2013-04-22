@@ -157,14 +157,16 @@ function addGeoJSON(){
                   type: "FeatureCollection",   
                   features: result
                 };
-                function buildPopup(id,name,type,comment){
+                function buildPopup(id,name,type,comment,likes){
                 	var custompopup = document.createElement('div');
 	                var dombtn = document.createElement('button');
+			var likestag;
+			if (likes == 0) {likestag = ''} else {likestag = ' ('+likes+')'}
 	                dombtn.classList.add("btn");
 	                dombtn.classList.add("btn-small");
 	                dombtn.classList.add("btn-success");
 	                dombtn.setAttribute("data-id",id)
-					dombtn.innerHTML = '<i class="icon-heart icon-white"></i> Like this';
+					dombtn.innerHTML = '<i class="icon-thumbs-up icon-white"></i>'+likestag+' Like this';
 					dombtn.onclick = function() {
 						var currentdate = new Date();
 						appendPoint(id,currentdate);
@@ -179,8 +181,10 @@ function addGeoJSON(){
 				}
 				var inData = L.geoJson(mapGeoJSON, {
 				    onEachFeature: function (feature, layer) {
+						var ptLikes = 0;
+						if (feature.properties.likes){ptLikes = feature.properties.likes.length}
 						layer.bindPopup(buildPopup(
-							feature.id,feature.properties.name,feature.properties.type,feature.properties.comment)
+							feature.id,feature.properties.name,feature.properties.type,feature.properties.comment,ptLikes)
 						);
 				    },
 				    pointToLayer: function (feature, latlng) {return L.marker(latlng, {icon: blueMarker})} 

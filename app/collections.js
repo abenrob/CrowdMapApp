@@ -53,7 +53,8 @@ function appendPoint(inID,inDate){
 				    contentType: "application/json; charset=utf-8",
 	 				dataType: "json",
 				    success: function(result) { 
-				        console.log(result);
+				        clearGeoJSON();
+					addGeoJSON();
 				    } 
 				}); 
 	    	}
@@ -68,7 +69,8 @@ function appendPoint(inID,inDate){
 				    contentType: "application/json; charset=utf-8",
 	 				dataType: "json",
 				    success: function(result) { 
-				        console.log(result);
+				        clearGeoJSON();
+					addGeoJSON();
 				    } 
 				}); 
 	    	}

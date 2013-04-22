@@ -37,29 +37,10 @@ label input {
     display: block;
 }
 
-/* sprite sheet */
-.green-marker {
-	background: url('app/images/map-markers.png') no-repeat -1px -1px;
-	width: 46px;
-	height: 52px;
-}
-.orange-marker {
-	background: url('app/images/map-markers.png') no-repeat -51px -1px;
-	width: 46px;
-	height: 52px;
-}
-.red-marker {
-	background: url('app/images/map-markers.png') no-repeat -101px -1px;
-	width: 46px;
-	height: 52px;
-}
-.blue-marker {
-	background: url('app/images/map-markers.png') no-repeat -101px -1px;
-	width: 46px;
-	height: 52px;
-}
-.grey-marker {
-	background: url('app/images/map-markers.png') no-repeat -201px -1px;
-	width: 46px;
-	height: 52px;
+/* override bootstrap glyphicon margin when in button */
+button [class^="icon-"],
+button [class*=" icon-"],
+.btn-small [class^="icon-"],
+.btn-small [class*=" icon-"] {
+    margin-top: 3px;
 }
