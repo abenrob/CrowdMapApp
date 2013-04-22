@@ -1,5 +1,7 @@
 CrowdMapApp is a crowd-sourced mapping application that allows for the collection of points and attributes.
 
+It is primarily built with backbone.js for data and structure, and Leaflet.js (+Leaflet.draw, +Leaflet.markercluster, +Leaflet.awesome-markers) for mapping. 
+
 This project is designed to deploy via [Backlift] (https://www.backlift.com/).
 
 You will need a backlift account and a dropbox account. Both of these are available without charge (for now.) 
