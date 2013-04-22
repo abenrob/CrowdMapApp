@@ -11,4 +11,4 @@ Clicking the link below will build this repo into a clean, functioning app withi
 [Copy this repo](https://www.backlift.com/backlift/dropbox/create?template=github.com/abenrob/CrowdMapApp&appname=CrowdMapApp "Copy") into your backlift.
 
 The current build sets the available attributes for the points, and has hard-coded 'dummy text' for most components. 
-The roadmap aims to create an admin panel that allows for the customization of the application by a non-developer. (Title, overview modal, point marker colors and icons, point attributes, etc.)
+The immediate roadmap aims to create an admin panel that allows for the customization of the application by a non-developer. (Title, overview modal, point marker colors and icons, point attributes, etc.)
