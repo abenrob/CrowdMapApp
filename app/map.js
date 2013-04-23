@@ -69,6 +69,11 @@ function initialize() {
 		var type = e.layerType,
 		    layer = e.layer,
 		    coords = layer.getLatLng();
+		var opts = siteSettings.pointTypes;
+		var optsHTML = '';
+		for (var i = 0; i < opts.length; i++) {
+		    optsHTML += '<option>'+opts[i]+'</option>'
+		}
 		//layer.bindPopup('<p>Lat: '+coords.lat+'</p><p>Long: '+coords.lng+'</p>');
 		drawnItems.addLayer(layer);
 		popup = L.popup({offset: new L.Point(0, -40)})
@@ -85,9 +90,7 @@ function initialize() {
 					      '<div class="controls">'+
 					          '<select  class="required" id="inType" name="inType"><span class="help-block"></span> '+
 					          	  '<option value="" disabled selected style="display:none;">Please Choose</option>'+
-					              '<option>Awesome</option>'+
-					              '<option>Good to go</option>'+
-					              '<option>Needs Improvement</option>'+
+							  optsHTML+
 					            '</select> <span class="help-block"></span> '+
 					        '</div>'+
 					  '</div>'+
