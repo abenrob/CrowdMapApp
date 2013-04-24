@@ -1,3 +1,14 @@
+// GLOBALS
+var map;
+var markers;
+var popup;
+var drawnItems;
+var markerIcon;
+var markerColor;
+var drawMarkerColor;
+var mapMarker;
+
+// MAIN
 function main(){
   	var $nav = $('.navbar');
   	var $map = $('#map');
@@ -6,10 +17,26 @@ function main(){
   	$map.css('top',$nav.height());
   	$map.height($body.height()-$nav.height());
   	
-  	$('#infoModal').modal('show');
-  	
-  	initialize();
-  	addGeoJSON();  
+    var siteConfig = Backbone.Model.extend({});
+    var siteConfigs = Backbone.Collection.extend({
+        model: siteConfig,
+        url: "/backlift/data/siteConfigs"
+    });
+    var configSettings = new siteConfigs();
+    configSettings.fetch({
+        success: function () {
+        	siteSettings = configSettings.first().attributes;
+        	markerIcon = siteSettings.mapMarkerIcon;
+			markerColor = siteSettings.mapMarkerColor;
+			drawMarkerColor = siteSettings.drawMarkerColor;
+            $('#app-name').html(siteSettings.siteName);
+            $('#app-modal-title').html(siteSettings.siteInfoTitle);
+            $('#app-modal-body').html(siteSettings.siteInfoText);
+            $('#infoModal').modal('show');
+            initialize();
+  			addGeoJSON(); 
+        }
+    });
 }
 $(main);
 

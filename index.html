@@ -38,26 +38,5 @@
 	</div>
 
   {{$ scripts}}
-  <script>
-    $('#infoModal').modal('hide');
-    var siteConfig = Backbone.Model.extend({});
-
-    var siteConfigs = Backbone.Collection.extend({
-        model: siteConfig,
-        url: "/backlift/data/siteConfigs"
-    });
-    var configSettings = new siteConfigs();
-    configSettings.fetch({
-        success: function () {
-            siteSettings = configSettings.first().attributes;
-            console.log("Site Name: "+siteSettings.siteName);
-            $('#app-name').html(siteSettings.siteName);
-            $('#app-modal-title').html(siteSettings.siteInfoTitle);
-            $('#app-modal-body').html(siteSettings.siteInfoText);
-            $('#infoModal').modal('show');
-        }
-    });
-    
-  </script>
 </body>
 </html>

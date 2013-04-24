@@ -1,15 +1,6 @@
-var map;
-var markers;
-var popup;
-var drawnItems;
-
-var blueMarker = L.AwesomeMarkers.icon({icon: 'icon-globe', color: 'blue'});
-var redMarker = L.AwesomeMarkers.icon({icon: 'icon-globe', color: 'red'});
-
 function initialize() {
 	
     var center = [46.8,2.8];
-
 
     var esriAerialUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
     var esriAerialLayer = new L.TileLayer(esriAerialUrl, {
@@ -38,18 +29,21 @@ function initialize() {
     
     // layercontrol added below draw controls
     // Initialize the FeatureGroup to store editable layers
+    
     drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);
     
     // Initialize the draw control and pass it the FeatureGroup of editable layers
     // NOTE: draw control is not visible, but it's events are linked to a navbar button.
+    // define marker
+    drawMarker = L.AwesomeMarkers.icon({icon: markerIcon, color: drawMarkerColor});
     var drawControl = new L.Control.Draw({
 	draw: {
 	    rectangle: false,
 	    polyline: false,
 	    polygon: false,
 	    circle: false,
-	    marker: {icon: redMarker}
+	    marker: {icon: drawMarker}
 	},
 	edit: {
 	    featureGroup: drawnItems
@@ -182,6 +176,8 @@ function addGeoJSON(){
 					custompopup.appendChild(domcontent);
 					return custompopup;
 				}
+				// define marker
+				mapMarker = L.AwesomeMarkers.icon({icon: markerIcon, color: markerColor});
 				var inData = L.geoJson(mapGeoJSON, {
 				    onEachFeature: function (feature, layer) {
 						var ptLikes = 0;
@@ -190,7 +186,7 @@ function addGeoJSON(){
 							feature.id,feature.properties.name,feature.properties.type,feature.properties.comment,ptLikes)
 						);
 				    },
-				    pointToLayer: function (feature, latlng) {return L.marker(latlng, {icon: blueMarker})} 
+				    pointToLayer: function (feature, latlng) {return L.marker(latlng, {icon: mapMarker})} 
 				});
 				markers = new L.MarkerClusterGroup();
 				markers.addLayer(inData);
