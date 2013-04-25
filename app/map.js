@@ -1,8 +1,4 @@
 function initialize() {
-	
-    //var center = [46.8,2.8];
-    var center = mapCenter
-
     var esriAerialUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
     var esriAerialLayer = new L.TileLayer(esriAerialUrl, {
         maxZoom: 19,
@@ -24,7 +20,7 @@ function initialize() {
     map = new L.map('map', mapoptions);
 
     // set the map's starting view
-    map.setView(new L.LatLng(center[0], center[1]), mapZoom);
+    map.setView(new L.LatLng(siteSettings.mapLat, siteSettings.mapLng), siteSettings.mapZoom);
     var layerControl = L.control.layers(basemaps);
     layerControl.setPosition('topleft');
     
@@ -37,7 +33,7 @@ function initialize() {
     // Initialize the draw control and pass it the FeatureGroup of editable layers
     // NOTE: draw control is not visible, but it's events are linked to a navbar button.
     // define marker
-    drawMarker = L.AwesomeMarkers.icon({icon: markerIcon, color: drawMarkerColor});
+    drawMarker = L.AwesomeMarkers.icon({icon: siteSettings.mapMarkerIcon, color: siteSettings.drawMarkerColor});
     var drawControl = new L.Control.Draw({
 	draw: {
 	    rectangle: false,
@@ -178,7 +174,7 @@ function addGeoJSON(){
 					return custompopup;
 				}
 				// define marker
-				mapMarker = L.AwesomeMarkers.icon({icon: markerIcon, color: markerColor});
+				mapMarker = L.AwesomeMarkers.icon({icon: siteSettings.mapMarkerIcon, color: siteSettings.mapMarkerColor});
 				var inData = L.geoJson(mapGeoJSON, {
 				    onEachFeature: function (feature, layer) {
 						var ptLikes = 0;
