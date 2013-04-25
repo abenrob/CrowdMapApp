@@ -26,7 +26,7 @@ var siteConfigs = Backbone.Collection.extend({
 });
 var configSettings = new siteConfigs();
 
-function setSettings(siteSettings){
+function setSettings(){
   $('#app-name').html(siteSettings.siteName);
   $('#app-modal-title').html(siteSettings.siteInfoTitle);
   $('#app-modal-body').html(siteSettings.siteInfoText);
@@ -46,14 +46,17 @@ function main(){
           if (configSettings.length == 0) {
             var baseConfig = new siteConfig(defaultConfigs);
             configSettings.add(baseConfig);
-            baseConfig.save();
-            configSettings.fetch({
-                success: function () {
-                  siteSettings = configSettings.first().attributes;
-                  setSettings(siteSettings);
-                  initialize();
-                  addGeoJSON(); 
-                }
+            baseConfig.save({},{
+              success: function(){
+                configSettings.fetch({
+                    success: function () {
+                      siteSettings = configSettings.first().attributes;
+                      setSettings();
+                      initialize();
+                      addGeoJSON(); 
+                    }
+                });
+              }
             });
           }
           else {
@@ -72,18 +75,6 @@ $(window).resize(function() {
 	var $nav = $('.navbar');
 	var $map = $('#map');
 	var $body = $('body');
-	  
 	$map.css('top',$nav.height());
 	$map.height($body.height()-$nav.height());
 });
-
-function clickBind() {
-	var $ptAddForm = $('#point-add-form');
-	var $ptAddBtn = $('#point-confirm');
-	var $ptAddName = $('#inName');
-	var $ptAddType = $('#inType');
-	var $prAddComment = $('#inComment');
-	$ptAddBtn.bind('click', function() {
-		console.log($ptAddForm.data('lng'));
-	});
-};
