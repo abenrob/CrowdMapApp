@@ -1,6 +1,7 @@
 function initialize() {
 	
-    var center = [46.8,2.8];
+    //var center = [46.8,2.8];
+    var center = mapCenter
 
     var esriAerialUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
     var esriAerialLayer = new L.TileLayer(esriAerialUrl, {
@@ -23,7 +24,7 @@ function initialize() {
     map = new L.map('map', mapoptions);
 
     // set the map's starting view
-    map.setView(new L.LatLng(center[0], center[1]), 5);
+    map.setView(new L.LatLng(center[0], center[1]), mapZoom);
     var layerControl = L.control.layers(basemaps);
     layerControl.setPosition('topleft');
     

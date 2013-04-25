@@ -7,6 +7,8 @@ var markerIcon;
 var markerColor;
 var drawMarkerColor;
 var mapMarker;
+var mapCenter = [];
+var mapZoom;
 
 // MAIN
 function main(){
@@ -29,6 +31,9 @@ function main(){
         	markerIcon = siteSettings.mapMarkerIcon;
 			markerColor = siteSettings.mapMarkerColor;
 			drawMarkerColor = siteSettings.drawMarkerColor;
+			mapCenter[0] = siteSettings.mapLat;
+			mapCenter[1] = siteSettings.mapLng;
+			mapZoom = siteSettings.mapZoom;
             $('#app-name').html(siteSettings.siteName);
             $('#app-modal-title').html(siteSettings.siteInfoTitle);
             $('#app-modal-body').html(siteSettings.siteInfoText);
