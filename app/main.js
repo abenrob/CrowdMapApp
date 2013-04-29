@@ -146,7 +146,7 @@ $("#site-config-form").validate({
 	   },
 	   inMapZoom: {
 	      required: true,
-	      digits: true
+	      range: [3, 16]
 	   },
 	   inMapLat: {
 	      required: true,
