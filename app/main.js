@@ -1,4 +1,5 @@
 // GLOBALS
+var auth_login = false;
 var map;
 var markers;
 var popup;
@@ -15,7 +16,8 @@ var defaultConfigs = {"siteInfoTitle":"Space Ipsum, yo!",
 "mapLng":2.8,
 "siteInfoText":"<p>When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. Mankind, let us preserve and increase this beauty, and not destroy it!</p><p>You know, being a test pilot isn't always the healthiest business in the world.</p><p>The path of a cosmonaut is not an easy, triumphant march to glory. You have to get to know the meaning not just of joy but also of grief, before being allowed in the spacecraft cabin.</p><p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center &mdash; an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p><p>To be the first to enter the cosmos, to engage, single-handed, in an unprecedented duel with nature &mdash; could one dream of anything more?</p>",
 "mapLat":46.8,
-"mapMarkerColor":"blue"}
+"mapMarkerColor":"blue",
+}
 
 
 var siteConfig = Backbone.Model.extend({
@@ -58,6 +60,18 @@ $('#config').click(function(){$('#configModal').modal('show')});
 
 // MAIN
 function main(){
+    $.ajax({
+      type: "GET",
+      url: "/backlift/auth/currentuser", 
+      success: function() { 
+        auth_login = true;
+        $('#config-button').show();
+      } ,
+      error: function() {
+        auth_login = false;
+      }
+    });
+    
     var $nav = $('.navbar');
     var $map = $('#map');
     var $body = $('body');
@@ -114,6 +128,7 @@ function updateSite(siteName,siteInfoTitle,siteInfoText,mapZoom,mapLat,mapLng,ma
 	newSiteConfig.mapMarkerColor = mapMarkerColor;
 	newSiteConfig.drawMarkerColor = drawMarkerColor;
 	newSiteConfig.pointTypes = pointTypes;
+
 	//console.log(newSiteConfig);
         var id = configSettings.first().id;
         var json = JSON2.stringify(newSiteConfig);
