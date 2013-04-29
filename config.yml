@@ -51,6 +51,7 @@ styles:
 - libraries/scripts/leaflet-0.6.0/MarkerCluster.Default.css
 - libraries/scripts/Leaflet.Draw/leaflet.draw.css
 - libraries/scripts/marker-awesome/leaflet.awesome-markers.css
+- libraries/scripts/bootstrap-wysihtml5/wysiwyg-color.css
 - libraries/scripts/bootstrap-wysihtml5/bootstrap-wysihtml5.css
 - app/**/*.css
 

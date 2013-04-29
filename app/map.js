@@ -179,7 +179,7 @@ function addGeoJSON(){
 						var domcontent = document.createElement('p');
 						domcontent.innerHTML = '<br><div><strong>Reporter Name: </strong>'+persName+
 												'<br><div><strong>Location: </strong>'+name+
-												'<br><strong>Feedback: </strong>'+type+
+												'<br><strong>Point Type: </strong>'+type+
 												'<br><strong>Comment: </strong>'+comment;
 						custompopup.appendChild(dombtn);
 						custompopup.appendChild(domcontent);
