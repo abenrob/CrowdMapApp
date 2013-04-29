@@ -48,3 +48,13 @@ button [class*=" icon-"],
 .btn-group .btn i {
 	margin-top: 3px;
 }
+
+/* config modal */
+#configModal {
+    width: 75%;
+    margin-left: -38%;
+}
+
+#configModal .modal-body {
+    max-height: 600px;
+}

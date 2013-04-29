@@ -73,7 +73,7 @@ function initialize() {
 					  '<div class="control-group">'+
 					    '<label class="control-label">Reporter Name</label>'+
 					    '<div class="controls">'+
-					      '<input class="required" type="text" id="inPersName" name="inPersName" placeholder="Location name"> <span class="help-block"></span> '+
+					      '<input class="required" type="text" id="inPersName" name="inPersName" placeholder="Your name"> <span class="help-block"></span> '+
 					  	'</div>'+
 					  '</div>'+
 					  '<div class="control-group">'+
@@ -178,7 +178,7 @@ function addGeoJSON(){
 						};
 						var domcontent = document.createElement('p');
 						domcontent.innerHTML = '<br><div><strong>Reporter Name: </strong>'+persName+
-												'<br><div><strong>Name: </strong>'+name+
+												'<br><div><strong>Location: </strong>'+name+
 												'<br><strong>Feedback: </strong>'+type+
 												'<br><strong>Comment: </strong>'+comment;
 						custompopup.appendChild(dombtn);

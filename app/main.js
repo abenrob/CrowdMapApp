@@ -43,7 +43,6 @@ function setSettings(){
   $('#inMapMkrColor').val(siteSettings.mapMarkerColor);
   $('#inDrawMkrColor').val(siteSettings.drawMarkerColor);
   $('#inPtTypes').val(siteSettings.pointTypes);
-
 }
 
 $('#config').click(function(){$('#configModal').modal('show')});
@@ -107,12 +106,25 @@ function updateSite(siteName,siteInfoTitle,siteInfoText,mapZoom,mapLat,mapLng,ma
 	newSiteConfig.mapMarkerColor = mapMarkerColor;
 	newSiteConfig.drawMarkerColor = drawMarkerColor;
 	newSiteConfig.pointTypes = pointTypes;
-	console.log(newSiteConfig);
+	//console.log(newSiteConfig);
+        var id = configSettings.first().id;
+        var json = JSON2.stringify(newSiteConfig);
+        $.ajax({
+          type: "PUT",
+          url: "/backlift/data/siteConfigs/"+id, 
+          data: json,
+          contentType: "application/json; charset=utf-8",
+	  dataType: "json",
+          success: function(result) { 
+              location.reload();
+          } 
+        });
+        
 };
 
 $("#site-config-form").validate({
-	rules: {
-		inSiteName: {
+	rules:{
+	  inSiteName: {
 	      required: true,
 	      minlength: 3
 	   },
@@ -149,7 +161,7 @@ $("#site-config-form").validate({
 	      required: true
 	   }
 	  },
-	highlight: function (element, errorClass, validClass) {
+    highlight: function (element, errorClass, validClass) {
         $(element).closest('.control-group').removeClass('success').addClass('error');
     },
     unhighlight: function (element, errorClass, validClass) {
@@ -178,9 +190,9 @@ $("#site-config-form").submit(function(event) {
 		    mapMarkerIcon = $form.find('input[id="inMapIcon"]').val(),
 		    mapMarkerColor = $form.find('select[id="inMapMkrColor"]').val(),
 		    drawMarkerColor = $form.find('select[id="inDrawMkrColor"]').val(),
-		    pointTypesRaw = $form.find('input[id="inPtTypes"]').val();
+		    pointTypesRaw = $form.find('input[id="inPtTypes"]').val(),
 		    pointTypes = pointTypesRaw.split(',');
-	  		updateSite(siteName,siteInfoTitle,siteInfoText,mapZoom,mapLat,mapLng,mapMarkerIcon,mapMarkerColor,drawMarkerColor,pointTypes);
+	  	    updateSite(siteName,siteInfoTitle,siteInfoText,mapZoom,mapLat,mapLng,mapMarkerIcon,mapMarkerColor,drawMarkerColor,pointTypes);
 		}
 });
 

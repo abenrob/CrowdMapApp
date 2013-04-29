@@ -25,7 +25,7 @@ function addPoint(inPersName,inName,inType,inComment,inLat,inLng){
 	    url: "/backlift/data/geoPoints", 
 	    data: json,
 	    contentType: "application/json; charset=utf-8",
-	 	dataType: "json",
+	    dataType: "json",
 	    success: function() { 
 	    	clearGeoJSON();
 			addGeoJSON();
