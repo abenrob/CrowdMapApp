@@ -5,10 +5,11 @@ var geoPoints = Backbone.Collection.extend({
     url: "/backlift/data/geoPoints"
 });
 
-function addPoint(inName,inType,inComment,inLat,inLng){
+function addPoint(inPersName,inName,inType,inComment,inLat,inLng){
 	var dataObj = {
 		"type": "Feature",
         "properties": {
+        	"persName": inPersName,
 			"name": inName,
 	    	"type": inType,
 	    	"comment": inComment

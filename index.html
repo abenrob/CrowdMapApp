@@ -16,7 +16,18 @@
           <ul class="nav">
             <li><a href="#infoModal" role="button" data-toggle="modal">About</a></li>
           </ul>
+			<div class="btn-group pull-right" style="margin-left: 10px">
+				<a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
+					<i class="icon-cog icon-white"></i>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a id="config" href="#">Configure Site</a></li>	
+					<!--<li><a href="#">Download Points</a></li>-->	
+				</ul>
+			</div>
           <button class="btn btn-success pull-right" type="button" id="draw"-toggle""><i class="icon-map-marker icon-white"></i> Create Point</button>
+          
 <!--           <button class="btn btn-success pull-right" type="button" id="draw-toggle">Create Point</button> -->
         </div><!--/.nav-collapse -->
       </div>
@@ -25,7 +36,7 @@
   <!-- a placeholder for my list of things, with an input for adding new things -->
   <div id="map">
   </div>
-  <!-- Modal -->
+  <!-- About Modal -->
 	<div id="infoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -34,6 +45,107 @@
 	  <div class="modal-body" id="app-modal-body"></div>
 	  <div class="modal-footer">
 	    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Get in there!</button>
+	  </div>
+	</div>
+  <!-- Config Modal -->
+	<div id="configModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3>Site Configuration Settings</h3>
+	  </div>
+	  <div class="modal-body">
+		<form id="site-config-form">
+		    <h5>General Site Settings</h5>
+		    <div class="row-fluid">
+		        <div class="control-group span6">
+		            <label>Site Name</label>
+		            <input class="required span12" type="text" id="inSiteName" name="inSiteName" placeholder="">
+		            <span class="help-block"></span> 
+		        </div>
+		        <div class="control-group span6">
+		            <label>Site Info Header</label>
+		            <input class="required span12" type="text" id="inSiteInfoHeader" name="inSiteInfoHeader" placeholder="">
+		            <span class="help-block"></span> 
+		        </div>
+		    </div>
+		    <div class="row-fluid">
+		        <div class="control-group span12">
+		            <label>Site Info Body</label>
+		            <textarea class="required xxlarge span12" id="inSiteInfoBody" rows="6" placeholder=""></textarea>
+		            <span class="help-block"></span> 
+		        </div>
+		    </div>
+		    <hr>
+		    <h5>Map Settings</h5>
+	        <div class="row-fluid">
+	            <div class="control-group span4">
+	                <label>Zoom Level</label>
+	                <input class="required span12" type="text" id="inMapZoom" name="inMapZoom">
+	                <span class="help-block"></span>
+	            </div>
+	            <div class="control-group span4">
+	                <label>Latitude</label>
+	                <input class="required span12" type="text" id="inMapLat" name="inMapLat">
+	                <span class="help-block"></span>
+	            </div>
+	            <div class="control-group span4">
+	                <label>Longitude</label>
+	                <input class="required span12" type="text" id="inMapLng" name="inMapLng">
+	                <span class="help-block"></span>
+	            </div>
+	        </div>
+	        <div class="row-fluid">
+	            <div class="control-group span4">
+	                <label>Marker Icon (<a href="http://twitter.github.io/bootstrap/base-css.html#icons" target="_blank">Glyphicon</a>)</label>
+	                <input class="required span12" type="text" id="inMapIcon" name="inMapIcon">
+	                <span class="help-block"></span>
+	            </div>
+	            <div class="control-group span4">
+	                <label>Marker Color</label>
+	                <select  class="required span12" id="inMapMkrColor" name="inMapMkrColor">
+						<option>blue</option>
+						<option>red</option>
+						<option>darkred</option>
+						<option>orange</option>
+						<option>green</option>
+						<option>darkgreen</option>
+						<option>darkblue</option>
+						<option>purple</option>
+						<option>darkpurple</option>
+						<option>cadetblue</option>
+					</select>
+	                <span class="help-block"></span>
+	            </div>  
+	            <div class="control-group span4">
+	                <label>Draw Marker Color</label>
+	                <select  class="required span12" id="inDrawMkrColor" name="inDrawMkrColor">
+						<option>red</option>
+						<option>darkred</option>
+						<option>orange</option>
+						<option>green</option>
+						<option>darkgreen</option>
+						<option>blue</option>
+						<option>darkblue</option>
+						<option>purple</option>
+						<option>darkpurple</option>
+						<option>cadetblue</option>
+					</select>
+	                <span class="help-block"></span>
+	            </div> 
+	        </div>
+	        <div class="row-fluid">
+	            <div class="control-group span12">
+	                <label>Point Types (comma-separated list)</label>
+	                <input class="required span12" type="text" id="inPtTypes" name="inPtTypes">
+	                <span class="help-block"></span>
+	            </div>
+	        </div>
+	        <div class="row-fluid">
+		        <div class="modal-footer">
+				    <button id="site-update" class="btn btn-success" type="submit">Update Site</button>
+				</div>
+			</div>
+		</form>
 	  </div>
 	</div>
 

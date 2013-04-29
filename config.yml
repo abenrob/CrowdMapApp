@@ -36,6 +36,8 @@ scripts:
 - libraries/scripts/Leaflet.Draw/leaflet.draw-src.js
 - libraries/scripts/marker-awesome/leaflet.awesome-markers.js
 - libraries/scripts/jquery.validate.min.js
+- libraries/scripts/bootstrap-wysihtml5/wysihtml5-0.3.0.js
+- libraries/scripts/bootstrap-wysihtml5/bootstrap-wysihtml5.js
 - app/**/*.js
 
 
@@ -49,6 +51,7 @@ styles:
 - libraries/scripts/leaflet-0.6.0/MarkerCluster.Default.css
 - libraries/scripts/Leaflet.Draw/leaflet.draw.css
 - libraries/scripts/marker-awesome/leaflet.awesome-markers.css
+- libraries/scripts/bootstrap-wysihtml5/bootstrap-wysihtml5.css
 - app/**/*.css
 
 

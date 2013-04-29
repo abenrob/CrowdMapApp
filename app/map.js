@@ -71,6 +71,12 @@ function initialize() {
 	    .setLatLng([coords.lat,coords.lng])
 	    .setContent('<form id="point-add-form" class="form-stacked" data-lat='+coords.lat+' data-lng='+coords.lng+'>'+
 					  '<div class="control-group">'+
+					    '<label class="control-label">Reporter Name</label>'+
+					    '<div class="controls">'+
+					      '<input class="required" type="text" id="inPersName" name="inPersName" placeholder="Location name"> <span class="help-block"></span> '+
+					  	'</div>'+
+					  '</div>'+
+					  '<div class="control-group">'+
 					    '<label class="control-label">Location Name</label>'+
 					    '<div class="controls">'+
 					      '<input class="required" type="text" id="inName" name="inName" placeholder="Location name"> <span class="help-block"></span> '+
@@ -101,7 +107,11 @@ function initialize() {
 
 	    $("#point-add-form").validate({
 	    	rules: {
-	    		inName: {
+	    		inPersName: {
+			      required: true,
+			      minlength: 3
+			    },
+			    inName: {
 			      required: true,
 			      minlength: 3
 			    },
@@ -130,13 +140,14 @@ function initialize() {
 				bool = $("#point-add-form").valid();
 				if (bool){
 				    var $form = $( this ),
-			  		lat = $form.data('lat');
-			  		lng = $form.data('lng');
+			  		lat = $form.data('lat'),
+			  		lng = $form.data('lng'),
+			  		persName = $form.find( 'input[id="inPersName"]' ).val(),
 			  		name = $form.find( 'input[id="inName"]' ).val(),
 			      	type = $form.find( 'select[id="inType"]' ).val(),
 			      	comment = $form.find( 'textarea[id="inComment"]' ).val();
 			  		//console.log(lat,lng,name,type,comment);
-			  		addPoint(name,type,comment,lat,lng);
+			  		addPoint(persName,name,type,comment,lat,lng);
 				}
 		});
 	});
@@ -151,27 +162,28 @@ function addGeoJSON(){
                   type: "FeatureCollection",   
                   features: result
                 };
-                function buildPopup(id,name,type,comment,likes){
+                function buildPopup(id,persName,name,type,comment,likes){
                 	var custompopup = document.createElement('div');
 	                var dombtn = document.createElement('button');
-			var likestag;
-			if (likes == 0) {likestag = ''} else {likestag = ' ('+likes+')'}
-	                dombtn.classList.add("btn");
-	                dombtn.classList.add("btn-small");
-	                dombtn.classList.add("btn-success");
-	                dombtn.setAttribute("data-id",id)
-					dombtn.innerHTML = '<i class="icon-thumbs-up icon-white"></i>'+likestag+' Like this';
-					dombtn.onclick = function() {
-						var currentdate = new Date();
-						appendPoint(id,currentdate);
-					};
-					var domcontent = document.createElement('p');
-					domcontent.innerHTML = '<br><div><strong>Name: </strong>'+name+
-											'<br><strong>Feedback: </strong>'+type+
-											'<br><strong>Comment: </strong>'+comment;
-					custompopup.appendChild(dombtn);
-					custompopup.appendChild(domcontent);
-					return custompopup;
+					var likestag;
+					if (likes == 0) {likestag = ''} else {likestag = ' ('+likes+')'}
+		                dombtn.classList.add("btn");
+		                dombtn.classList.add("btn-small");
+		                dombtn.classList.add("btn-success");
+		                dombtn.setAttribute("data-id",id)
+						dombtn.innerHTML = '<i class="icon-thumbs-up icon-white"></i>'+likestag+' Like this';
+						dombtn.onclick = function() {
+							var currentdate = new Date();
+							appendPoint(id,currentdate);
+						};
+						var domcontent = document.createElement('p');
+						domcontent.innerHTML = '<br><div><strong>Reporter Name: </strong>'+persName+
+												'<br><div><strong>Name: </strong>'+name+
+												'<br><strong>Feedback: </strong>'+type+
+												'<br><strong>Comment: </strong>'+comment;
+						custompopup.appendChild(dombtn);
+						custompopup.appendChild(domcontent);
+						return custompopup;
 				}
 				// define marker
 				mapMarker = L.AwesomeMarkers.icon({icon: siteSettings.mapMarkerIcon, color: siteSettings.mapMarkerColor});
@@ -180,7 +192,7 @@ function addGeoJSON(){
 						var ptLikes = 0;
 						if (feature.properties.likes){ptLikes = feature.properties.likes.length}
 						layer.bindPopup(buildPopup(
-							feature.id,feature.properties.name,feature.properties.type,feature.properties.comment,ptLikes)
+							feature.id,feature.properties.persName,feature.properties.name,feature.properties.type,feature.properties.comment,ptLikes)
 						);
 				    },
 				    pointToLayer: function (feature, latlng) {return L.marker(latlng, {icon: mapMarker})} 

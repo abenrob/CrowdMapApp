@@ -44,3 +44,7 @@ button [class*=" icon-"],
 .btn-small [class*=" icon-"] {
     margin-top: 3px;
 }
+
+.btn-group .btn i {
+	margin-top: 3px;
+}

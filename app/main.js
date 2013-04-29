@@ -27,11 +27,27 @@ var siteConfigs = Backbone.Collection.extend({
 var configSettings = new siteConfigs();
 
 function setSettings(){
+  $('#inSiteInfoBody').wysihtml5();
   $('#app-name').html(siteSettings.siteName);
   $('#app-modal-title').html(siteSettings.siteInfoTitle);
   $('#app-modal-body').html(siteSettings.siteInfoText);
   $('#infoModal').modal('show');
+  // site cniofig modal settings
+  $('#inSiteName').val(siteSettings.siteName);
+  $('#inSiteInfoHeader').val(siteSettings.siteInfoTitle);
+  $('#inSiteInfoBody').val(siteSettings.siteInfoText);
+  $('#inMapZoom').val(siteSettings.mapZoom);
+  $('#inMapLat').val(siteSettings.mapLat);
+  $('#inMapLng').val(siteSettings.mapLng);
+  $('#inMapIcon').val(siteSettings.mapMarkerIcon);
+  $('#inMapMkrColor').val(siteSettings.mapMarkerColor);
+  $('#inDrawMkrColor').val(siteSettings.drawMarkerColor);
+  $('#inPtTypes').val(siteSettings.pointTypes);
+
 }
+
+$('#config').click(function(){$('#configModal').modal('show')});
+
 
 // MAIN
 function main(){
@@ -67,7 +83,6 @@ function main(){
           }
         }
     });
-    
 }
 $(main);
 
@@ -78,3 +93,94 @@ $(window).resize(function() {
 	$map.css('top',$nav.height());
 	$map.height($body.height()-$nav.height());
 });
+
+
+function updateSite(siteName,siteInfoTitle,siteInfoText,mapZoom,mapLat,mapLng,mapMarkerIcon,mapMarkerColor,drawMarkerColor,pointTypes){
+	var newSiteConfig = {};
+	newSiteConfig.siteName = siteName;
+	newSiteConfig.siteInfoTitle = siteInfoTitle;
+	newSiteConfig.siteInfoText = siteInfoText;
+	newSiteConfig.mapZoom = mapZoom;
+	newSiteConfig.mapLat = mapLat;
+	newSiteConfig.mapLng = mapLng;
+	newSiteConfig.mapMarkerIcon = mapMarkerIcon;
+	newSiteConfig.mapMarkerColor = mapMarkerColor;
+	newSiteConfig.drawMarkerColor = drawMarkerColor;
+	newSiteConfig.pointTypes = pointTypes;
+	console.log(newSiteConfig);
+};
+
+$("#site-config-form").validate({
+	rules: {
+		inSiteName: {
+	      required: true,
+	      minlength: 3
+	   },
+	   inSiteInfoHeader: {
+	      required: true,
+	      minlength: 3
+	   },
+	   inSiteInfoBody: {
+	      required: true,
+	      minlength: 20
+	   },
+	   inMapZoom: {
+	      required: true,
+	      digits: true
+	   },
+	   inMapLat: {
+	      required: true,
+	      number: true
+	   },
+	   inMapLng: {
+	      required: true,
+	      number: true
+	   },
+	   inMapIcon: {
+	      required: true
+	   },
+	   inMapMkrColor: {
+	      required: true
+	   },
+	   inDrawMkrColor: {
+	      required: true
+	   },
+	   inPtTypes: {
+	      required: true
+	   }
+	  },
+	highlight: function (element, errorClass, validClass) {
+        $(element).closest('.control-group').removeClass('success').addClass('error');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+        $(element).closest('.control-group').removeClass('error').addClass('success');
+    },
+    success: function (label) {
+        $(label).closest('form').find('.valid').removeClass("invalid");
+    },
+    errorPlacement: function (error, element) {
+        element.closest('.control-group').find('.help-block').html(error.text());
+    }
+});
+$("#site-config-form").submit(function(event) {		 
+  /* stop form from submitting normally */
+	  event.preventDefault();
+	 $("#site-config-form").valid();
+		bool = $("#site-config-form").valid();
+		if (bool){
+		    var $form = $( this ),
+		    siteName = $form.find('input[id="inSiteName"]').val(),
+		    siteInfoTitle = $form.find('input[id="inSiteInfoHeader"]').val(),
+		    siteInfoText = $form.find('textarea[id="inSiteInfoBody"]').val(),
+		    mapZoom = $form.find('input[id="inMapZoom"]').val(),
+		    mapLat = $form.find('input[id="inMapLat"]').val(),
+		    mapLng = $form.find('input[id="inMapLng"]').val(),
+		    mapMarkerIcon = $form.find('input[id="inMapIcon"]').val(),
+		    mapMarkerColor = $form.find('select[id="inMapMkrColor"]').val(),
+		    drawMarkerColor = $form.find('select[id="inDrawMkrColor"]').val(),
+		    pointTypesRaw = $form.find('input[id="inPtTypes"]').val();
+		    pointTypes = pointTypesRaw.split(',');
+	  		updateSite(siteName,siteInfoTitle,siteInfoText,mapZoom,mapLat,mapLng,mapMarkerIcon,mapMarkerColor,drawMarkerColor,pointTypes);
+		}
+});
+
