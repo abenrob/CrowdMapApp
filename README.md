@@ -30,7 +30,7 @@ The attribute choices you set for your points are a comma-separated list - this 
 
 Want to change the styling of the app? create a custom bootstrap css file (named bootstrap.min.css) and replace the existing one located at /Dropbox/Apps/Backlift/&lt;your new app&gt;/libraries/scripts/bootstrap-2.3.1/css. **-or-** grab a pre-fab stylesheet from [bootswatch](http://bootswatch.com/) (make sure to download the 'bootstrap.min.css' version,) and replace as previously mentioned.
 ## Roadmap
-* Create 'data-dump' too to allow admin to get csv table of points (with x,y) for import into other tools/applications.
+* Create 'data-dump' tool to allow admin to get csv table of points (with x,y) for import into other tools/applications.
 * Use map view to set map center and zoom level for site configuration.
 * Allow for users to add comments to a point, in addition to the current ability to like a point.
 
