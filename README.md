@@ -22,7 +22,7 @@ Clicking [this link](https://www.backlift.com/backlift/dropbox/create?template=g
 From the backlift dashboard, you can go to the live app, or the app's admin panel.
 The admin panel shouldn't need to be modified, as the configurations happen in the app itself.
 To configure your site, go to the site itself, click on the gears button in the upper right, and select *configure site*.
-From here you can set the site name, 'about modal' header and content, and all the map settings.
+From here you can set the site name, 'about modal' header and content, and all the map settings. If the gears don't show up, you need to log into you backlift account - &lt;your new site address&gt;/admin, or the gears from the [backlift dashboard](https://www.backlift.com/dashboard/apps) - the config gears dropdown should show up in your app now.
 
 The map marker icons are pulled from bootstrap glyphicons, and you will need to enter the icon name as it is referenced in the [bootstrap docs](http://twitter.github.io/bootstrap/base-css.html#icons).
 
