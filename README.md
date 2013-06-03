@@ -12,8 +12,8 @@ The goal is to create a generic template of a geographic crowd-source applicatio
 
 ## Getting started
 This project is designed to deploy via [Backlift](https://www.backlift.com/).
-You will need a backlift account and a dropbox account. Both of these are available without charge (for now.)
-When you clone the app, it will build a fresh version and the app will be housed on backlift's servers.
+You will need a backlift account and a dropbox account.
+When you clone the app, it will build a fresh version and the app will be housed on backlift's servers. Backlift can support it as a 14-day temporary url (that can be re-set every 2 weeks,) or with backlift premium (currently beta) you can create a permanent url.
 
 #### Setting up the app with backlift
 Clicking [this link](https://www.backlift.com/backlift/dropbox/create?template=github.com/abenrob/CrowdMapApp&appname=CrowdMapApp "Copy") will build this repo into a clean, functioning app within your backlift account domain - and the code will live in your dropbox.
