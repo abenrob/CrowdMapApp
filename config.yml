@@ -68,10 +68,11 @@ optimize: no
 # Each key is a folder name, and each value is a github repository
 # or gist. Github repos may specify a tag or branch via a tree url.
 
-include:
-  admin: 
-  - github.com/backlift/backlift-admin
-  libraries: 
-  - github.com/backlift/backbone-bundle/tree/20130406
-  libraries/scripts: 
-  - gist.github.com/backlift/5325013 # backlift-reloader.js
+packages:
+  include:
+    admin: 
+    - github.com/backlift/backlift-admin
+    libraries: 
+    - github.com/backlift/backbone-bundle/tree/20130406
+    libraries/scripts: 
+    - gist.github.com/backlift/5325013 # backlift-reloader.js
