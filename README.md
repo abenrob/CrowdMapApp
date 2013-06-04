@@ -12,8 +12,8 @@ The goal is to create a generic template of a geographic crowd-source applicatio
 
 ## Getting started
 This project is designed to deploy via [Backlift](https://www.backlift.com/).
-You will need a backlift account and a dropbox account. Both of these are available without charge (for now.)
-When you clone the app, it will build a fresh version and the app will be housed on backlift's servers.
+You will need a backlift account and a dropbox account.
+When you clone the app, it will build a fresh version and the app will be housed on backlift's servers. Backlift can support it as a 14-day temporary url (that can be re-set every 2 weeks,) or with backlift premium (currently beta) you can create a permanent url.
 
 #### Setting up the app with backlift
 Clicking [this link](https://www.backlift.com/backlift/dropbox/create?template=github.com/abenrob/CrowdMapApp&appname=CrowdMapApp "Copy") will build this repo into a clean, functioning app within your backlift account domain - and the code will live in your dropbox.
@@ -22,7 +22,7 @@ Clicking [this link](https://www.backlift.com/backlift/dropbox/create?template=g
 From the backlift dashboard, you can go to the live app, or the app's admin panel.
 The admin panel shouldn't need to be modified, as the configurations happen in the app itself.
 To configure your site, go to the site itself, click on the gears button in the upper right, and select *configure site*.
-From here you can set the site name, 'about modal' header and content, and all the map settings.
+From here you can set the site name, 'about modal' header and content, and all the map settings. If the gears don't show up, you need to log into you backlift account - &lt;your new site address&gt;/admin, or the gears from the [backlift dashboard](https://www.backlift.com/dashboard/apps) - the config gears dropdown should show up in your app now.
 
 The map marker icons are pulled from bootstrap glyphicons, and you will need to enter the icon name as it is referenced in the [bootstrap docs](http://twitter.github.io/bootstrap/base-css.html#icons).
 
