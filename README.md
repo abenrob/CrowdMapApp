@@ -1,6 +1,9 @@
+# BACKLIFT IS NO LONGER AROUND, SO THIS IS JUST USELESS LEGACY CODE...
+
+
 # CrowdMapApp
 ## Introduction
-CrowdMapApp is a crowd-sourced mapping application that allows for the collection of points and attributes.
+CrowdMapApp isa crowd-sourced mapping application that allows for the collection of points and attributes.
 
 The goal is to create a generic template of a geographic crowd-source application, and allow folks to modify the application to suit their desired content.
 
